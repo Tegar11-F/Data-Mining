@@ -52,6 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
     <link rel="prev" title="Diskritisasi (Tugas 2)" href="Tugas2.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -114,6 +115,11 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="Tugas2.html">
    Diskritisasi (Tugas 2)
   </a>
@@ -121,6 +127,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Implementasi K-NN (Tugas 3)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-notebooks.html">
+   Notebooks with MyST Markdown
   </a>
  </li>
 </ul>
@@ -335,18 +346,20 @@ title="Print to PDF"
 <h1>Implementasi K-NN (Tugas 3)<a class="headerlink" href="#implementasi-k-nn-tugas-3" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datairisurl</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/Tegar11-F/Data-Set/fa20d41a8676343efb6cb833304d9fb54b807d67/IRIS.csv&quot;</span>
-<span class="n">datairis</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">datairisurl</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">57850</span><span class="n">f9b195f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">datairisurl</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/Tegar11-F/Data-Set/fa20d41a8676343efb6cb833304d9fb54b807d67/IRIS.csv&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">datairis</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">datairisurl</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;pd&#39; is not defined
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datairisurl</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/Tegar11-F/Data-Set/fa20d41a8676343efb6cb833304d9fb54b807d67/IRIS.csv&quot;</span>
+<span class="n">datairis</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">datairisurl</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -359,7 +372,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-2c50ccaa-0bf3-47c7-b4b1-35fc53a5157c">
+  <div id="df-d757c3dd-cc7f-48e7-a2ad-b1ff11329f3a">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -630,7 +643,7 @@ title="Print to PDF"
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-2c50ccaa-0bf3-47c7-b4b1-35fc53a5157c')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-d757c3dd-cc7f-48e7-a2ad-b1ff11329f3a')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -681,12 +694,12 @@ title="Print to PDF"
 
       <script>
         const buttonEl =
-          document.querySelector('#df-2c50ccaa-0bf3-47c7-b4b1-35fc53a5157c button.colab-df-convert');
+          document.querySelector('#df-d757c3dd-cc7f-48e7-a2ad-b1ff11329f3a button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-2c50ccaa-0bf3-47c7-b4b1-35fc53a5157c');
+          const element = document.querySelector('#df-d757c3dd-cc7f-48e7-a2ad-b1ff11329f3a');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -709,7 +722,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#check number of rows and columns in dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#periksa jumlah baris dan kolom dalam dataset</span>
 <span class="n">datairis</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
@@ -722,16 +735,16 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create a dataframe with all training data except the target column</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#buat kerangka data dengan semua data pelatihan kecuali kolom target</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">datairis</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">])</span>
-<span class="c1">#check that the target variable has been removed</span>
+<span class="c1">#periksa apakah variabel target telah dihapus</span>
 <span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-84877f93-c96b-4c60-b7e9-7d85e26dd282">
+  <div id="df-2e811ea5-1719-4f55-9840-e02f46e5ae31">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -796,7 +809,7 @@ title="Print to PDF"
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-84877f93-c96b-4c60-b7e9-7d85e26dd282')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-2e811ea5-1719-4f55-9840-e02f46e5ae31')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -847,12 +860,12 @@ title="Print to PDF"
 
       <script>
         const buttonEl =
-          document.querySelector('#df-84877f93-c96b-4c60-b7e9-7d85e26dd282 button.colab-df-convert');
+          document.querySelector('#df-2e811ea5-1719-4f55-9840-e02f46e5ae31 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-84877f93-c96b-4c60-b7e9-7d85e26dd282');
+          const element = document.querySelector('#df-2e811ea5-1719-4f55-9840-e02f46e5ae31');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -875,15 +888,21 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#separate target values</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#nilai target terpisah</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">datairis</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="c1">#view target values</span>
-<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;,
+       &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;,
+       &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;,
+       &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;,
+       &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;,
+       &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;,
+       &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;,
        &#39;Iris-setosa&#39;], dtype=object)
 </pre></div>
 </div>
@@ -892,7 +911,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="c1">#split dataset into train and test data</span>
+<span class="c1">#bagi dataset menjadi data latih dan uji</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -901,9 +920,10 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="c1"># Create KNN classifier</span>
+
+<span class="c1"># Buat pengklasifikasi KNN</span>
 <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
-<span class="c1"># Fit the classifier to the data</span>
+<span class="c1"># Sesuaikan pengklasifikasi dengan data</span>
 <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -916,21 +936,28 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#show first 5 model predictions on the test data</span>
-<span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#tampilkan 29 prediksi model pertama pada data uji</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">29</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Iris-virginica&#39;, &#39;Iris-setosa&#39;, &#39;Iris-versicolor&#39;, &#39;Iris-setosa&#39;,
-       &#39;Iris-setosa&#39;], dtype=object)
+       &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;, &#39;Iris-virginica&#39;, &#39;Iris-virginica&#39;,
+       &#39;Iris-virginica&#39;, &#39;Iris-versicolor&#39;, &#39;Iris-setosa&#39;,
+       &#39;Iris-versicolor&#39;, &#39;Iris-virginica&#39;, &#39;Iris-versicolor&#39;,
+       &#39;Iris-virginica&#39;, &#39;Iris-setosa&#39;, &#39;Iris-virginica&#39;,
+       &#39;Iris-versicolor&#39;, &#39;Iris-versicolor&#39;, &#39;Iris-virginica&#39;,
+       &#39;Iris-versicolor&#39;, &#39;Iris-versicolor&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;,
+       &#39;Iris-virginica&#39;, &#39;Iris-versicolor&#39;, &#39;Iris-setosa&#39;, &#39;Iris-setosa&#39;,
+       &#39;Iris-versicolor&#39;], dtype=object)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#check accuracy of our model on the test data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#periksa keakuratan model kami pada data uji</span>
 <span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -976,6 +1003,13 @@ title="Print to PDF"
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Diskritisasi (Tugas 2)</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="markdown-notebooks.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

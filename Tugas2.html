@@ -114,6 +114,11 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Diskritisasi (Tugas 2)
@@ -122,6 +127,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Tugas3.html">
    Implementasi K-NN (Tugas 3)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-notebooks.html">
+   Notebooks with MyST Markdown
   </a>
  </li>
 </ul>
@@ -334,22 +344,22 @@ title="Print to PDF"
                 
   <section id="diskritisasi-tugas-2">
 <h1>Diskritisasi (Tugas 2)<a class="headerlink" href="#diskritisasi-tugas-2" title="Permalink to this headline">#</a></h1>
-<p>There is a lot more that you can do with outputs (such as including interactive outputs)
-with your book. For more information about this, see <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datairisurl</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/Tegar11-F/Data-Set/fa20d41a8676343efb6cb833304d9fb54b807d67/IRIS.csv&quot;</span>
 <span class="n">datairis</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">datairisurl</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">57850</span><span class="n">f9b195f</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">datairisurl</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/Tegar11-F/Data-Set/fa20d41a8676343efb6cb833304d9fb54b807d67/IRIS.csv&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">datairis</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">datairisurl</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;pd&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -362,7 +372,7 @@ with your book. For more information about this, see <a class="reference externa
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-111812f9-3090-4244-a225-b72a3e9b8a26">
+  <div id="df-c1af0cb8-613e-45da-a880-c5d2f6f3f7af">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -482,7 +492,7 @@ with your book. For more information about this, see <a class="reference externa
 </table>
 <p>150 rows × 5 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-111812f9-3090-4244-a225-b72a3e9b8a26')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-c1af0cb8-613e-45da-a880-c5d2f6f3f7af')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -533,12 +543,12 @@ with your book. For more information about this, see <a class="reference externa
 
       <script>
         const buttonEl =
-          document.querySelector('#df-111812f9-3090-4244-a225-b72a3e9b8a26 button.colab-df-convert');
+          document.querySelector('#df-c1af0cb8-613e-45da-a880-c5d2f6f3f7af button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-111812f9-3090-4244-a225-b72a3e9b8a26');
+          const element = document.querySelector('#df-c1af0cb8-613e-45da-a880-c5d2f6f3f7af');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -686,7 +696,7 @@ with your book. For more information about this, see <a class="reference externa
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-8676374f-b46e-4b9c-9293-7998a466f84c">
+  <div id="df-7a85b1e3-a0cc-4407-a71c-be09a3164e53">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -806,7 +816,7 @@ with your book. For more information about this, see <a class="reference externa
 </table>
 <p>150 rows × 5 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-8676374f-b46e-4b9c-9293-7998a466f84c')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-7a85b1e3-a0cc-4407-a71c-be09a3164e53')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -857,12 +867,12 @@ with your book. For more information about this, see <a class="reference externa
 
       <script>
         const buttonEl =
-          document.querySelector('#df-8676374f-b46e-4b9c-9293-7998a466f84c button.colab-df-convert');
+          document.querySelector('#df-7a85b1e3-a0cc-4407-a71c-be09a3164e53 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-8676374f-b46e-4b9c-9293-7998a466f84c');
+          const element = document.querySelector('#df-7a85b1e3-a0cc-4407-a71c-be09a3164e53');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
