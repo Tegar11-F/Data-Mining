@@ -382,7 +382,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-69d51517-a287-44f5-aef2-76734ab05dd8">
+  <div id="df-9c438b5b-8677-4ed4-aec0-e02791666b12">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -459,7 +459,7 @@ title="Print to PDF"
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-69d51517-a287-44f5-aef2-76734ab05dd8')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-9c438b5b-8677-4ed4-aec0-e02791666b12')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -510,12 +510,12 @@ title="Print to PDF"
 
       <script>
         const buttonEl =
-          document.querySelector('#df-69d51517-a287-44f5-aef2-76734ab05dd8 button.colab-df-convert');
+          document.querySelector('#df-9c438b5b-8677-4ed4-aec0-e02791666b12 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-69d51517-a287-44f5-aef2-76734ab05dd8');
+          const element = document.querySelector('#df-9c438b5b-8677-4ed4-aec0-e02791666b12');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -556,7 +556,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-d7b39304-37b7-44a9-a9cb-b4166b0b606c">
+  <div id="df-8c0d7d41-0739-4127-89d5-2eba866fe540">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -687,7 +687,7 @@ title="Print to PDF"
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-d7b39304-37b7-44a9-a9cb-b4166b0b606c')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-8c0d7d41-0739-4127-89d5-2eba866fe540')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -738,12 +738,12 @@ title="Print to PDF"
 
       <script>
         const buttonEl =
-          document.querySelector('#df-d7b39304-37b7-44a9-a9cb-b4166b0b606c button.colab-df-convert');
+          document.querySelector('#df-8c0d7d41-0739-4127-89d5-2eba866fe540 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-d7b39304-37b7-44a9-a9cb-b4166b0b606c');
+          const element = document.querySelector('#df-8c0d7d41-0739-4127-89d5-2eba866fe540');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -784,6 +784,13 @@ Data columns (total 6 columns):
  5   Species        150 non-null    object 
 dtypes: float64(4), int64(1), object(1)
 memory usage: 7.2+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Id&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -860,30 +867,13 @@ memory usage: 7.2+ KB
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion matrix for KNN
- [[0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [4 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 2 0 0 1 0 1 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 3 0 0 4 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 1 2 0 0 1 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0]]
-accuracy_KNN : 0.178
-precision_KNN : 0.178
-recall_KNN: 0.178
-f1-score_KNN : 0.178
+ [[16  0  0]
+ [ 0 17  1]
+ [ 0  0 11]]
+accuracy_KNN : 0.978
+precision_KNN : 0.978
+recall_KNN: 0.978
+f1-score_KNN : 0.978
 </pre></div>
 </div>
 </div>
@@ -911,29 +901,13 @@ f1-score_KNN : 0.178
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Confusion matrix for Naive Bayes
- [[0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [1 4 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 1 2 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 1 0 0 0 2 0 0 1 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 4 2 1 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 0 1 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0]
- [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0]]
-accuracy_Naive Bayes: 0.289
-precision_Naive Bayes: 0.289
-recall_Naive Bayes: 0.289
-f1-score_Naive Bayes : 0.289
+ [[16  0  0]
+ [ 0 18  0]
+ [ 0  0 11]]
+accuracy_Naive Bayes: 1.000
+precision_Naive Bayes: 1.000
+recall_Naive Bayes: 1.000
+f1-score_Naive Bayes : 1.000
 </pre></div>
 </div>
 </div>
