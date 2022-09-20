@@ -379,13 +379,13 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-d4375b4f-c029-47b6-952f-d0cd3087deee">
+  <div id="df-aa78df7d-a2c6-4230-a178-a679a032912c">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -459,10 +459,65 @@ title="Print to PDF"
       <td>0.2</td>
       <td>Iris-setosa</td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>146</td>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>147</td>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>148</td>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>149</td>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>Iris-virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>150</td>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>Iris-virginica</td>
+    </tr>
   </tbody>
 </table>
+<p>150 rows × 6 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-d4375b4f-c029-47b6-952f-d0cd3087deee')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-aa78df7d-a2c6-4230-a178-a679a032912c')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -513,12 +568,12 @@ title="Print to PDF"
 
       <script>
         const buttonEl =
-          document.querySelector('#df-d4375b4f-c029-47b6-952f-d0cd3087deee button.colab-df-convert');
+          document.querySelector('#df-aa78df7d-a2c6-4230-a178-a679a032912c button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-d4375b4f-c029-47b6-952f-d0cd3087deee');
+          const element = document.querySelector('#df-aa78df7d-a2c6-4230-a178-a679a032912c');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -559,7 +614,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-a105368c-274e-43d1-93d8-60cb83f3b39c">
+  <div id="df-0f9afbcd-f6dd-4017-a8a7-eec5ccfd7938">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -690,7 +745,7 @@ title="Print to PDF"
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-a105368c-274e-43d1-93d8-60cb83f3b39c')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-0f9afbcd-f6dd-4017-a8a7-eec5ccfd7938')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -741,12 +796,12 @@ title="Print to PDF"
 
       <script>
         const buttonEl =
-          document.querySelector('#df-a105368c-274e-43d1-93d8-60cb83f3b39c button.colab-df-convert');
+          document.querySelector('#df-0f9afbcd-f6dd-4017-a8a7-eec5ccfd7938 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-a105368c-274e-43d1-93d8-60cb83f3b39c');
+          const element = document.querySelector('#df-0f9afbcd-f6dd-4017-a8a7-eec5ccfd7938');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -819,6 +874,76 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Train and Test split</span>
 <span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">y_test</span><span class="o">=</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[5.8, 2.8, 5.1, 2.4],
+       [6. , 2.2, 4. , 1. ],
+       [5.5, 4.2, 1.4, 0.2],
+       [7.3, 2.9, 6.3, 1.8],
+       [5. , 3.4, 1.5, 0.2],
+       [6.3, 3.3, 6. , 2.5],
+       [5. , 3.5, 1.3, 0.3],
+       [6.7, 3.1, 4.7, 1.5],
+       [6.8, 2.8, 4.8, 1.4],
+       [6.1, 2.8, 4. , 1.3],
+       [6.1, 2.6, 5.6, 1.4],
+       [6.4, 3.2, 4.5, 1.5],
+       [6.1, 2.8, 4.7, 1.2],
+       [6.5, 2.8, 4.6, 1.5],
+       [6.1, 2.9, 4.7, 1.4],
+       [4.9, 3.1, 1.5, 0.1],
+       [6. , 2.9, 4.5, 1.5],
+       [5.5, 2.6, 4.4, 1.2],
+       [4.8, 3. , 1.4, 0.3],
+       [5.4, 3.9, 1.3, 0.4],
+       [5.6, 2.8, 4.9, 2. ],
+       [5.6, 3. , 4.5, 1.5],
+       [4.8, 3.4, 1.9, 0.2],
+       [4.4, 2.9, 1.4, 0.2],
+       [6.2, 2.8, 4.8, 1.8],
+       [4.6, 3.6, 1. , 0.2],
+       [5.1, 3.8, 1.9, 0.4],
+       [6.2, 2.9, 4.3, 1.3],
+       [5. , 2.3, 3.3, 1. ],
+       [5. , 3.4, 1.6, 0.4],
+       [6.4, 3.1, 5.5, 1.8],
+       [5.4, 3. , 4.5, 1.5],
+       [5.2, 3.5, 1.5, 0.2],
+       [6.1, 3. , 4.9, 1.8],
+       [6.4, 2.8, 5.6, 2.2],
+       [5.2, 2.7, 3.9, 1.4],
+       [5.7, 3.8, 1.7, 0.3],
+       [6. , 2.7, 5.1, 1.6],
+       [5.9, 3. , 4.2, 1.5],
+       [5.8, 2.6, 4. , 1.2],
+       [6.8, 3. , 5.5, 2.1],
+       [4.7, 3.2, 1.3, 0.2],
+       [6.9, 3.1, 5.1, 2.3],
+       [5. , 3.5, 1.6, 0.6],
+       [5.4, 3.7, 1.5, 0.2]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 1, 0, 2, 0, 2, 0, 1, 1, 1, 2, 1, 1, 1, 1, 0, 1, 1, 0, 0, 2, 1,
+       0, 0, 2, 0, 0, 1, 1, 0, 2, 1, 0, 2, 2, 1, 0, 1, 1, 1, 2, 0, 2, 0,
+       0])
 </pre></div>
 </div>
 </div>
