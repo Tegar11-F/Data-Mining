@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Diskritisasi (Tugas 2) &#8212; DATA MINING</title>
+    <title>Implementasi K-MEAN (Tugas 5) &#8212; DATA MINING</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Implementasi K-NN (Tugas 3)" href="Tugas3.html" />
-    <link rel="prev" title="Dissimiliarity (Tugas 1)" href="Tugas1.html" />
+    <link rel="next" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+    <link rel="prev" title="Implementasi Naive Bayes (Tugas 4)" href="Tugas4.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -124,8 +124,8 @@ const thebe_selector_output = ".output, .cell_output"
    Dissimiliarity (Tugas 1)
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tugas2.html">
    Diskritisasi (Tugas 2)
   </a>
  </li>
@@ -139,8 +139,8 @@ const thebe_selector_output = ".output, .cell_output"
    Implementasi Naive Bayes (Tugas 4)
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Tugas5.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Implementasi K-MEAN (Tugas 5)
   </a>
  </li>
@@ -208,7 +208,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Tugas2.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Tugas5.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -268,7 +268,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTugas2.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTugas5.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -296,7 +296,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/Tugas2.ipynb"
+        <a href="_sources/Tugas5.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -345,7 +345,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Diskritisasi (Tugas 2)</h1>
+                <h1>Implementasi K-MEAN (Tugas 5)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -357,8 +357,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="diskritisasi-tugas-2">
-<h1>Diskritisasi (Tugas 2)<a class="headerlink" href="#diskritisasi-tugas-2" title="Permalink to this headline">#</a></h1>
+  <section id="implementasi-k-mean-tugas-5">
+<h1>Implementasi K-MEAN (Tugas 5)<a class="headerlink" href="#implementasi-k-mean-tugas-5" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
@@ -366,6 +366,9 @@ title="Print to PDF"
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -387,7 +390,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-888775eb-c78d-454d-83b6-bec3f5841ba9">
+  <div id="df-20e3e8fe-deb4-4866-8323-a3fc9942d502">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -507,7 +510,7 @@ title="Print to PDF"
 </table>
 <p>150 rows × 5 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-888775eb-c78d-454d-83b6-bec3f5841ba9')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-20e3e8fe-deb4-4866-8323-a3fc9942d502')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -558,12 +561,12 @@ title="Print to PDF"
 
       <script>
         const buttonEl =
-          document.querySelector('#df-888775eb-c78d-454d-83b6-bec3f5841ba9 button.colab-df-convert');
+          document.querySelector('#df-20e3e8fe-deb4-4866-8323-a3fc9942d502 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-888775eb-c78d-454d-83b6-bec3f5841ba9');
+          const element = document.querySelector('#df-20e3e8fe-deb4-4866-8323-a3fc9942d502');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -586,327 +589,57 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sepalLength</span> <span class="o">=</span> <span class="n">datairis</span><span class="o">.</span><span class="n">sepal_length</span>
-<span class="n">sepalWidth</span> <span class="o">=</span> <span class="n">datairis</span><span class="o">.</span><span class="n">sepal_width</span>
-<span class="n">petalLength</span> <span class="o">=</span> <span class="n">datairis</span><span class="o">.</span><span class="n">petal_length</span>
-<span class="n">petalWidth</span> <span class="o">=</span> <span class="n">datairis</span><span class="o">.</span><span class="n">petal_width</span>
-<span class="n">spesies</span> <span class="o">=</span> <span class="n">datairis</span><span class="o">.</span><span class="n">species</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aa</span> <span class="o">=</span> <span class="n">sepalLength</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ab</span> <span class="o">=</span> <span class="n">sepalWidth</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ac</span> <span class="o">=</span> <span class="n">petalLength</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ad</span> <span class="o">=</span> <span class="n">petalWidth</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">sp</span> <span class="o">=</span> <span class="n">spesies</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
-<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ab</span><span class="p">)</span>
-<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
-<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ad</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Finding the optimum number of clusters for k-means classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="n">wcss</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">init</span> <span class="o">=</span> <span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">datairis</span><span class="p">)</span>
+    <span class="n">wcss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KBinsDiscretizer(encode=&#39;ordinal&#39;, n_bins=4, strategy=&#39;uniform&#39;)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">ValueError</span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="n">a1239a0042a8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">init</span> <span class="o">=</span> <span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">datairis</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">wcss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.7/dist-packages/sklearn/cluster/_kmeans.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1141</span>             <span class="n">order</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1142</span>             <span class="n">copy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">copy_x</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1143</span>             <span class="n">accept_large_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1144</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1145</span> 
+
+<span class="nn">/usr/local/lib/python3.7/dist-packages/sklearn/base.py</span> in <span class="ni">_validate_data</span><span class="nt">(self, X, y, reset, validate_separately, **check_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Validation should be done on X, y or both.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span>         <span class="k">elif</span> <span class="ow">not</span> <span class="n">no_val_X</span> <span class="ow">and</span> <span class="n">no_val_y</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">566</span>             <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">check_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span>             <span class="n">out</span> <span class="o">=</span> <span class="n">X</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span>         <span class="k">elif</span> <span class="n">no_val_X</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_val_y</span><span class="p">:</span>
+
+<span class="nn">/usr/local/lib/python3.7/dist-packages/sklearn/utils/validation.py</span> in <span class="ni">check_array</span><span class="nt">(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">744</span>                     <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">casting</span><span class="o">=</span><span class="s2">&quot;unsafe&quot;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">745</span>                 <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">746</span>                     <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">747</span>             <span class="k">except</span> <span class="n">ComplexWarning</span> <span class="k">as</span> <span class="n">complex_warning</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">748</span>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+
+<span class="nn">/usr/local/lib/python3.7/dist-packages/pandas/core/generic.py</span> in <span class="ni">__array__</span><span class="nt">(self, dtype)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1991</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1992</span>     <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">NpDtype</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1993</span>         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1994</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1995</span>     <span class="k">def</span> <span class="nf">__array_wrap__</span><span class="p">(</span>
+
+<span class="ne">ValueError</span>: could not convert string to float: &#39;Iris-setosa&#39;
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="n">encode</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KBinsDiscretizer(encode=&#39;ordinal&#39;, n_bins=4, strategy=&#39;uniform&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KBinsDiscretizer(n_bins=Ellipsis)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="bp">Ellipsis</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KBinsDiscretizer(n_bins=Ellipsis)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xa</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
-<span class="n">xb</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">ab</span><span class="p">)</span>
-<span class="n">xc</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
-<span class="n">xd</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">ad</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataa1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">:</span><span class="n">xa</span><span class="p">}</span>
-<span class="n">dataa2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">:</span><span class="n">xb</span><span class="p">}</span>
-<span class="n">dataa3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">:</span><span class="n">xc</span><span class="p">}</span>
-<span class="n">dataa4</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">:</span><span class="n">xd</span><span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">xa</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">])</span>
-<span class="n">fb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">xb</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">])</span>
-<span class="n">fc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tepal_length&#39;</span><span class="p">])</span>
-<span class="n">fd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">xd</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tepal_width&#39;</span><span class="p">])</span>
-<span class="n">spe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sp</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datalist</span> <span class="o">=</span> <span class="p">[</span><span class="n">fa</span><span class="p">,</span> <span class="n">fb</span><span class="p">,</span> <span class="n">fc</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="n">spe</span><span class="p">]</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">datalist</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-19ea02db-1c28-4a5d-96d3-4ed634d58ffa">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sepal_length</th>
-      <th>sepal_width</th>
-      <th>tepal_length</th>
-      <th>tepal_width</th>
-      <th>Species</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>Iris-setosa</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>145</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>Iris-virginica</td>
-    </tr>
-    <tr>
-      <th>146</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>Iris-virginica</td>
-    </tr>
-    <tr>
-      <th>147</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>Iris-virginica</td>
-    </tr>
-    <tr>
-      <th>148</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>Iris-virginica</td>
-    </tr>
-    <tr>
-      <th>149</th>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>Iris-virginica</td>
-    </tr>
-  </tbody>
-</table>
-<p>150 rows × 5 columns</p>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-19ea02db-1c28-4a5d-96d3-4ed634d58ffa')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-19ea02db-1c28-4a5d-96d3-4ed634d58ffa button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-19ea02db-1c28-4a5d-96d3-4ed634d58ffa');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
 </div>
 </section>
 
@@ -937,17 +670,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="Tugas1.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="Tugas4.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Dissimiliarity (Tugas 1)</p>
+            <p class="prev-next-title">Implementasi Naive Bayes (Tugas 4)</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="Tugas3.html" title="next page">
+    <a class='right-next' id="next-link" href="markdown-notebooks.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Implementasi K-NN (Tugas 3)</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
